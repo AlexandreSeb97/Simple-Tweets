@@ -4,21 +4,34 @@
     android:padding="10dp">
 
     <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:id="@+id/ivProfileImage"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:background="#4d3efff5"
-        android:paddingRight="15dp" />
+        android:padding="15dp"
+        android:layout_marginRight="5dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/tvUserName"
-        android:layout_alignParentTop="true"
+        android:textColor="#ff7bb3b9"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_toRightOf="@+id/textView"
+        android:layout_toEndOf="@+id/textView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/tvBody"
+        android:layout_below="@+id/tvUserName"
         android:layout_toRightOf="@+id/ivProfileImage"
         android:layout_toEndOf="@+id/ivProfileImage" />
 
@@ -26,8 +39,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
-        android:id="@+id/tvBody"
-        android:layout_alignBottom="@+id/ivProfileImage"
-        android:layout_toRightOf="@+id/ivProfileImage"
-        android:layout_toEndOf="@+id/ivProfileImage" />
+        android:id="@+id/tvName"
+        android:textStyle="bold|italic"
+        android:textColor="#ff4fd0b8"
+        android:textSize="18sp"
+        android:layout_alignTop="@+id/ivProfileImage"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="\@"
+        android:id="@+id/textView"
+        android:layout_below="@+id/tvName"
+        android:layout_alignLeft="@+id/tvBody"
+        android:layout_alignStart="@+id/tvBody"
+        android:textColor="#ff7bb3b9"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 </RelativeLayout>

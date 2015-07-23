@@ -1,11 +1,13 @@
 package com.codepath.apps.mysimpletweets;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.codepath.apps.mysimpletweets.R;
 import com.codepath.apps.mysimpletweets.models.Tweet;
@@ -19,7 +21,7 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 
-public class TimelineActivity extends ActionBarActivity {
+public class TimelineActivity extends Activity {
 
     private TwitterClient client;
     private ArrayList<Tweet> tweets;
@@ -28,6 +30,7 @@ public class TimelineActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Toast.makeText(this, "Welcome to the my simple tweet client!", Toast.LENGTH_SHORT).show();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
         lvTweets = (ListView) findViewById(R.id.lvTweets);
@@ -40,6 +43,37 @@ public class TimelineActivity extends ActionBarActivity {
         // Get the client
         client = TwitterApplication.getRestClient(); //singleton client
         populateTimeline();
+        ListView lvTweets = (ListView) findViewById(R.id.lvTweets);
+        // Attach the listener to the AdapterView onCreate
+        lvTweets.setOnScrollListener(new InfiniteScrollListener() {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount) {
+                // Triggered only when new data needs to be appended to the list
+                // Add whatever code is needed to append new items to your AdapterView
+                customLoadMoreDataFromApi(true);
+                // or customLoadMoreDataFromApi(totalItemsCount);
+            }
+        });
+    }
+
+    public void customLoadMoreDataFromApi (final boolean isPage) {
+        client.getHomeTimelineMore(new JsonHttpResponseHandler(){
+            // SUCCESS
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray json) {
+                if (isPage) {
+                    aTweets.clear();
+                    aTweets.addAll(Tweet.fromJSONArray(json));
+                    Toast.makeText(getApplicationContext(), "25 more tweets! Have fun!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            // FAILURE
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                Log.d("DEBUG", errorResponse.toString());
+            }
+        });
     }
 
     // Send API request and get timeline json

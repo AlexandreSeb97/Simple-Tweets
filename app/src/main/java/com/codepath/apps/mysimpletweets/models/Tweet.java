@@ -16,6 +16,7 @@ public class Tweet {
     private long uid;
     private User user;
     private String createdAt;
+    
 
     public User getUser() {
         return user;
@@ -54,8 +55,9 @@ public class Tweet {
             try {
                 JSONObject tweetJson = jsonArray.getJSONObject(i);
                 Tweet tweet = Tweet.fromJSON(tweetJson);
-                if (tweet != null);
+                if (tweet != null) {
                     tweets.add(tweet);
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
                 continue;
