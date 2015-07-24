@@ -1,23 +1,21 @@
 package com.codepath.apps.mysimpletweets;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.codepath.apps.mysimpletweets.R;
 import com.codepath.apps.mysimpletweets.models.Tweet;
-import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.json.JSONException;
 
 import java.util.ArrayList;
 
@@ -27,6 +25,7 @@ public class TimelineActivity extends Activity {
     private ArrayList<Tweet> tweets;
     private TweetsArrayAdapter aTweets;
     private ListView lvTweets;
+    private ImageButton ibTweet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +41,8 @@ public class TimelineActivity extends Activity {
         lvTweets.setAdapter(aTweets);
         // Get the client
         client = TwitterApplication.getRestClient(); //singleton client
-        populateTimeline();
         ListView lvTweets = (ListView) findViewById(R.id.lvTweets);
+        populateTimeline();
         // Attach the listener to the AdapterView onCreate
         lvTweets.setOnScrollListener(new InfiniteScrollListener() {
             @Override
@@ -115,7 +114,12 @@ public class TimelineActivity extends Activity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_tweet) {
+            Intent i = new Intent(this, TweetActivity.class);
+            String postAPI = "statuses/update.json";
+            String TweetAPI = "https://api.twitter.com/1.1/" + postAPI;
+            i.putExtra("TweetAPI", TweetAPI);
+            startActivity(i);
             return true;
         }
 

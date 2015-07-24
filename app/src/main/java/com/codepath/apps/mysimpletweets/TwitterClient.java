@@ -35,6 +35,15 @@ public class TwitterClient extends OAuthBaseClient {
 
 	// METHOD == ENDPOINT
 
+	// Create Tweet
+
+	public void postTweet(AsyncHttpResponseHandler handler) {
+		String apiUrl = getApiUrl("statuses/update.json");
+		// Params
+		RequestParams params = new RequestParams();
+		params.put("status", 140);
+		getClient().get(apiUrl, params, handler);
+	}
 	// HomeTimeLine = gets us the home timeline
 	// GET statuses/home_timeline.json
 	// count = 25
