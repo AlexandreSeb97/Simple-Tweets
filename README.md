@@ -16,10 +16,10 @@ User should be displayed the relative timestamp for each tweet "8m", "7h"
 [Done] User can view more tweets as they scroll with infinite pagination
 
 
-User can compose a new tweet
+[In Progress]User can compose a new tweet
 
 
-User can click a “Compose” icon in the Action Bar on the top right
+[Done]User can click a “Compose” icon in the Action Bar on the top right
 
 
 User can then enter a new tweet and post this to twitter
