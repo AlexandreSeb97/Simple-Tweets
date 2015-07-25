@@ -17,7 +17,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:hint="Compose a new Tweet! Limit of 140 characters"
-        android:textColor="#ff000000" />
+        android:textColor="#ff000000"
+        android:clickable="false" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -33,6 +34,7 @@
         android:layout_height="wrap_content"
         android:text="Tweet!"
         android:id="@+id/btnTweet"
+        android:onClick="onPostTweet"
         android:layout_below="@+id/etTweet"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="38dp" />
