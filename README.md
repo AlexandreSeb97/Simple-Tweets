@@ -30,3 +30,4 @@ User is taken back to home timeline with new tweet visible in timeline
 
 
 ## GIF Walkthrough
+<img src="cellphone.gif" alt="gif walkthrough" />
